@@ -7,11 +7,16 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
   kafka:
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
     consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: midas-core-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+
 
 general:
   kafka-topic: midas-topic
