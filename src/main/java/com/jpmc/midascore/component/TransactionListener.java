@@ -76,6 +76,19 @@ public class TransactionListener {
                 logger.error("Failed to process transaction: {}", transaction, e);
             }
         }
+
+    public void logWaldorfBalance() {
+        try {
+            UserRecord waldorf = userRepository.findByName("waldorf");
+            if (waldorf != null) {
+                logger.info("Waldorf final balance: {}", (int) Math.floor(waldorf.getBalance()));
+            } else {
+                logger.warn("Waldorf user not found.");
+            }
+        } catch (Exception e) {
+            logger.error("Error while fetching Waldorf balance", e);
+        }
+    }
          /* A helper method to inspect the captured data, potentially useful in debugging.
          */
         public List<Float> getRecordedAmounts() {

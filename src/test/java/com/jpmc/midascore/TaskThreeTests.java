@@ -1,5 +1,6 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.component.TransactionListener;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,10 @@ public class TaskThreeTests {
     @Autowired
     private FileLoader fileLoader;
 
+    @Autowired
+    private TransactionListener transactionListener;
+
+
     @Test
     void task_three_verifier() throws InterruptedException {
         userPopulator.populate();
@@ -31,6 +36,8 @@ public class TaskThreeTests {
             kafkaProducer.send(transactionLine);
         }
         Thread.sleep(2000);
+
+        transactionListener.logWaldorfBalance();
 
 
         logger.info("----------------------------------------------------------");
