@@ -1,5 +1,6 @@
 package com.jpmc.midascore;
 
+import com.jpmc.midascore.component.TransactionListener;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,10 @@ public class TaskFourTests {
     @Autowired
     private FileLoader fileLoader;
 
+    @Autowired
+    private TransactionListener transactionListener;
+
+
     @Test
     void task_four_verifier() throws InterruptedException {
         userPopulator.populate();
@@ -32,6 +37,8 @@ public class TaskFourTests {
         }
         Thread.sleep(2000);
 
+
+        transactionListener.logAllFinalBalances();
 
         logger.info("----------------------------------------------------------");
         logger.info("----------------------------------------------------------");

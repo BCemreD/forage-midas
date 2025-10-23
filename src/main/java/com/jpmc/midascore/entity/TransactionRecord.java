@@ -23,15 +23,43 @@ public class TransactionRecord {
     private float amount;
     private boolean isValid;
     private LocalDateTime transactionTimestamp = LocalDateTime.now();
+    @Column(nullable = false)
+    private float incentive;
+
 
     // Constructors
     public TransactionRecord() {}
 
-    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount, boolean isValid) {
+    public TransactionRecord(UserRecord sender, UserRecord recipient, float amount, boolean isValid, float incentive) {
         this.sender = sender;
         this.recipient = recipient;
         this.amount = amount;
         this.isValid = isValid;
+        this.incentive = incentive;
+    }
+
+    public UserRecord getSender() {
+        return sender;
+    }
+
+    public UserRecord getRecipient() {
+        return recipient;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public boolean isValid() {
+        return isValid;
+    }
+
+    public float getIncentive() {
+        return incentive;
+    }
+
+    public LocalDateTime getTransactionTimestamp() {
+        return transactionTimestamp;
     }
 
 }
